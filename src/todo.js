@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Item from "./Item";
 
+//Before Delete Functionality
 
 const Todo = () => {
   const [todos, settodos] = useState([]);
