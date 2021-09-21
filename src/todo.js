@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Item from "./Item";
 
+
 const Todo = () => {
   const [todos, settodos] = useState([]);
   const [todo, settodo] = useState("");
 
-  const [done, setdone] = useState("");
+
   console.log("Component rendering");
 
   useEffect(() => {
@@ -18,10 +19,7 @@ const Todo = () => {
     settodo(event.target.value);
   };
 
-  const handleChangedone=(event) => {
-    console.log(event.target.value);
-    setdone(event.target.value);
-  };
+
 
   const Add = () => {
     //https://www.tjvantoll.com/2013/03/14/better-ways-of-comparing-a-javascript-string-to-multiple-values/
@@ -38,17 +36,7 @@ if(todo != ""){
   }
 };
 
-  const Del = () => {
-    const a = todos.includes(done, 0);
-    if (a) {
-      setdone(todos.pop(done))
-    }
-  };
 
-  const a = todos.map((greet, index) => {
-    return `Hi Narendran E ${greet}-${index}`;
-  });
-  console.log(a);
   return (
     <div className="content">
       {todos.map((greet, index) => (
@@ -70,19 +58,6 @@ if(todo != ""){
         
       </label>
 
-      <label style={{ marginTop: "20px", marginBottom: "20px" }}>
-        To Remove:
-          <input
-            type="text"
-            name="todo"
-            onChange={handleChangedone}
-            value={done}
-          />
-      </label>
-      <button onClick={Del}>To Remove List</button>
-      <label style={{ marginTop: "20px", marginBottom: "20px" }}>
-        
-      </label>
     </div>
   );
 };
