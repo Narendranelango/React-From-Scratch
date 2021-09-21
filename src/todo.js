@@ -1,25 +1,21 @@
-// 07 - Controlled components
-//    - Input handling
-//    - Handling Events
-
 import { useState, useEffect } from "react";
 import Item from "./Item";
 
 const Todo = () => {
-  const [greetings, setGreetings] = useState([]);
-  const [greeting, setGreeting] = useState("");
+  const [todos, settodos] = useState([]);
+  const [todo, settodo] = useState("");
 
   const [done, setdone] = useState("");
   console.log("Component rendering");
 
   useEffect(() => {
     console.log("UseEffect logic");
-    window.localStorage.setItem("greetings", greetings);
-  }, [greetings]);
+    window.localStorage.setItem("todos", todos);
+  }, [todos]);
 
   const handleChange = (event) => {
     console.log(event.target.value);
-    setGreeting(event.target.value);
+    settodo(event.target.value);
   };
 
   const handleChangedone=(event) => {
@@ -29,33 +25,33 @@ const Todo = () => {
 
   const Add = () => {
     //https://www.tjvantoll.com/2013/03/14/better-ways-of-comparing-a-javascript-string-to-multiple-values/
-if(greeting != ""){
-    const duplicate = greetings.includes(greeting, 0);
+if(todo != ""){
+    const duplicate = todos.includes(todo, 0);
 
     if (duplicate) {
       console.log("U have entered a duplicate value");
     } else {
-    setGreetings([...greetings, greeting]);
-    setGreeting("");
+    settodos([...todos, todo]);
+    settodo("");
     setdone("");
     }
   }
 };
 
   const Del = () => {
-    const a = greetings.includes(done, 0);
+    const a = todos.includes(done, 0);
     if (a) {
-      
+      setdone(todos.pop(done))
     }
   };
 
-  const a = greetings.map((greet, index) => {
+  const a = todos.map((greet, index) => {
     return `Hi Narendran E ${greet}-${index}`;
   });
   console.log(a);
   return (
     <div className="content">
-      {greetings.map((greet, index) => (
+      {todos.map((greet, index) => (
         //<Item text={greet} key={`${greet}-${index}`} />
         <Item text={greet} key={`Hi Narendran ${greet} at ${index}.`} />
       ))}
@@ -64,9 +60,9 @@ if(greeting != ""){
         To Do:
           <input
             type="text"
-            name="greeting"
+            name="todo"
             onChange={handleChange}
-            value={greeting}
+            value={todo}
           />
       </label>
       <button onClick={Add}>Add To List</button>
@@ -78,12 +74,12 @@ if(greeting != ""){
         To Remove:
           <input
             type="text"
-            name="greeting"
+            name="todo"
             onChange={handleChangedone}
             value={done}
           />
       </label>
-      {/* <button onClick={}>To Remove List</button> */}
+      <button onClick={Del}>To Remove List</button>
       <label style={{ marginTop: "20px", marginBottom: "20px" }}>
         
       </label>
