@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Item from "./Item";
 
-//After Delete Functionality
+//Delete Method Satisfied All Test Cases
 
 const Todo = () => {
   const [todos, settodos] = useState([]);
@@ -44,12 +44,22 @@ if(todo != ""){
   const Del = () => {
     const a = todos.includes(done, 0);
     if (a) {
-      setdone(todos.pop(done))
+    //   setdone(todos.pop(done))
+    todos.map((greet, index)=>{
+        if(greet === done)
+        {
+            setdone(todos.splice(todos.indexOf(done),1))
+        }
+    })
+    }
+    if(!a)
+    {
+        console.log("The item to be deleted is not found in the Todo List.Kindly check with your input's")
     }
   };
 
   const a = todos.map((greet, index) => {
-    return `Hi Narendran E ${greet}-${index}`;
+    return `${greet}-${index}`;
   });
   console.log(a);
   return (
