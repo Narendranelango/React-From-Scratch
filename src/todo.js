@@ -45,6 +45,7 @@ if(todo != ""){
     const a = todos.includes(done, 0);
     if (a) {
     //   setdone(todos.pop(done))
+    //Splice to be reviewed
     todos.map((greet, index)=>{
         if(greet === done)
         {
